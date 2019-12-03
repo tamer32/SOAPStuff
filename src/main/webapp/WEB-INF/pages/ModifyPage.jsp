@@ -4,8 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <tf:layout>
-	<form:form action="modifyPage" modelAttribute="playerInfo"
-		method="POST" enctype="application/json">
+	<form:form action="${pageContext.request.contextPath}/modifyPage/${playerInfo.id}" modelAttribute="playerInfo"
+		method="POST">
 		
 		Rename your character:<form:input path="username"
 			class="form-group mx-sm-3 mb-2" />

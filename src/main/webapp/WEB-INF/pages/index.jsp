@@ -5,8 +5,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <tf:layout>
-	<h2>Hello World!</h2>
-	<form:form action="createUser" modelAttribute="playerInfo" method = "POST" enctype = "application/json">
+	<h2>Enter into a world of dangers and adventures!</h2>
+	<form:form action="createUser" modelAttribute="playerInfoBean" method="POST" enctype="application/json">
 		
 		Enter your name Hero:<form:input path="username" class="form-group mx-sm-3 mb-2" id="username" />
 		  

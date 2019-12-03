@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Aspects {
-  @Pointcut("execution(* com.third.iter.controlers.UserController.createUser(..))")
+  @Pointcut("execution(* com.third.iter.web.UserController.createUser(..))")
   public void expInit() {
     System.out.println("This is the @Pointcut");
   }

@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isELIgnored="false"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="tf"%>
-<%@page import="com.third.iter.services.UserManagmentServiceImpl"%>
+<%@page import="com.third.iter.service.UserManagmentServiceImpl"%>
 <%@page import="java.util.LinkedList"%>
-<%@page import="com.third.iter.entities.heroes.PlayerInfo"%>
+<%@page import="com.third.iter.service.entities.heroes.PlayerInfo"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <tf:layout>
@@ -32,7 +32,7 @@
 					<td><input type="submit" value="Let's Fight!"
 						class="btn btn-light"></td>
 				</form:form>
-				<form:form action="modifyPage" modelAttribute="playerUsername"
+				<form:form action="${pageContext.request.contextPath}/modifyPage/${playerInfo.id}" modelAttribute="playerUsername"
 					method="GET" >
 					<td><input type="submit" value="Rename" class="btn btn-light" id="modifyButton"></td>
 				</form:form>
@@ -41,8 +41,8 @@
 				<td>Experience</td>
 				<td colspan="5"><div class="progress">
 						<div class="progress-bar" role="progressbar"
-							aria-valuenow="${PlayerInfo.getExp()}" aria-valuemin="0"
-							aria-valuemax="10" style="width:${PlayerInfo.getExp()}%">${PlayerInfo.getExp()}</div>
+							aria-valuenow="${playerInfo.exp}" aria-valuemin="0"
+							aria-valuemax="10" style="width:${playerInfo.exp}%">${playerInfo.exp}</div>
 					</div></td>
 			</tr>
 		</table>

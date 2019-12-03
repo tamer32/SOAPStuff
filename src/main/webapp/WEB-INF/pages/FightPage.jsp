@@ -77,10 +77,13 @@
 
 	<script>
 		function battlePhase() {
+			let urlId = window.location.pathname.split('/')[3];
 			$
 					.ajax({
 						type : "GET",
-						url :  "${pageContext.request.contextPath}" + "/rollTheDice",
+						url :  "${pageContext.request.contextPath}" + "/rollTheDice/" +urlId ,
+						data: urlId,
+						dataType: "json",
 						success : function(response) {
 							document.getElementById("diceDiv").style.visibility = "visible";
 							document.getElementById("gracefulDice").innerHTML = "Graceful Dice: "
@@ -104,11 +107,16 @@
 								
 
 							}
+						},
+						error: function (response){
+							console.dir(response);	
 						}
 					});
 		}
 		function redirectToCharacterCreation() {
-			window.location.replace("/CRUDAppTheSecound/deletePage");
+			let urlId =location.pathname.split('/')[3];
+			window.location.replace("/CRUDAppTheSecound/deletePage/" + urlId);
+			
 		}
 		function redirectToCharacterScreen() {
 			var Http = new XMLHttpRequest();

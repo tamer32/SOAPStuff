@@ -7,5 +7,4 @@
 <tf:layout>
 	<p><a href="${pageContext.servletContext.contextPath}/loginPage">Login</a>
 	<p><a href="${pageContext.servletContext.contextPath}/registerPage">Register</a>
-
 </tf:layout>
