@@ -8,12 +8,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CRUDAppTheSecound Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>

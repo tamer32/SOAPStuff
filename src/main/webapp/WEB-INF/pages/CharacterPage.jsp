@@ -4,9 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page isELIgnored="false"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="tf"%>
-<%@page import="com.third.iter.service.UserManagmentServiceImpl"%>
-<%@page import="java.util.LinkedList"%>
-<%@page import="com.third.iter.service.entities.heroes.PlayerInfo"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <tf:layout>
