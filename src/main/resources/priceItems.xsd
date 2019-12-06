@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/priceItems"
+	xmlns:tns="http://www.example.org/priceItems"
+	elementFormDefault="qualified">
+	<xs:element name="getItems">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="country">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="price" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+</schema>
