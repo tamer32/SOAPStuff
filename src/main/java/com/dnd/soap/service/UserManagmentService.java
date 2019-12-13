@@ -3,7 +3,7 @@ package com.dnd.soap.service;
 import java.util.List;
 import java.util.Map;
 import org.springframework.http.ResponseEntity;
-import com.dnd.soap.service.bean.PlayerInfoBean;
+import com.dnd.soap.service.entities.PlayerInfoBean;
 import com.dnd.soap.service.entities.heroes.PlayerInfo;
 import com.dnd.soap.service.entities.monsters.MonsterInfo;
 

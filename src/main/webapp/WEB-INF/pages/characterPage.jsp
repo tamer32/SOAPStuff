@@ -24,14 +24,22 @@
 					varStatus="status">
 					<td>${playerStats.value}</td>
 				</c:forEach>
-				<form:form action="${pageContext.request.contextPath}/fightPage/${playerInfo.id}" modelAttribute="playerInfo" 
-					method="GET">
+				<form:form
+					action="${pageContext.request.contextPath}/fightPage/${playerInfo.id}"
+					modelAttribute="playerInfo" method="GET">
 					<td><input type="submit" value="Let's Fight!"
 						class="btn btn-light"></td>
 				</form:form>
-				<form:form action="${pageContext.request.contextPath}/modifyPage/${playerInfo.id}" modelAttribute="playerUsername"
-					method="GET" >
-					<td><input type="submit" value="Rename" class="btn btn-light" id="modifyButton"></td>
+				<form:form
+					action="${pageContext.request.contextPath}/modifyPage/${playerInfo.id}"
+					modelAttribute="playerUsername" method="GET">
+					<td><input type="submit" value="Rename" class="btn btn-light"
+						id="modifyButton"></td>
+				</form:form>
+				<form:form action="${pageContext.request.contextPath}/userInfo/${playerInfo.id}/market"
+					method="GET">
+					<td><input type="submit" value="Market" class="btn btn-light"
+						id="marketButton"></td>
 				</form:form>
 			</tr>
 			<tr>

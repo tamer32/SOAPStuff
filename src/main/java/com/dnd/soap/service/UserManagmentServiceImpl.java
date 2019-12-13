@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.dnd.soap.service.bean.PlayerInfoBean;
+import com.dnd.soap.service.entities.PlayerInfoBean;
 import com.dnd.soap.service.entities.heroes.Bowman;
 import com.dnd.soap.service.entities.heroes.PlayerInfo;
 import com.dnd.soap.service.entities.heroes.Rogue;

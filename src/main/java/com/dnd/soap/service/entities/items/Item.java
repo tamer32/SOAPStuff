@@ -14,6 +14,8 @@ public class Item {
     this.intelect = intelect;
   }
 
+  public Item() {}
+
   public Long getId() {
     return id;
   }
@@ -48,5 +50,20 @@ public class Item {
 
   public void setIntelect(Integer intelect) {
     this.intelect = intelect;
+  }
+
+  @Override
+  public String toString() {
+    return "Item [id="
+        + id
+        + ", name="
+        + name
+        + ", strenght="
+        + strenght
+        + ", agility="
+        + agility
+        + ", intelect="
+        + intelect
+        + "]";
   }
 }

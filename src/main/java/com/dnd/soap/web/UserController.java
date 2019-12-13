@@ -1,10 +1,9 @@
 package com.dnd.soap.web;
 
-import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Random;
-import javax.servlet.ServletException;
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,16 +11,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.dnd.soap.service.MarketService;
 import com.dnd.soap.service.UserManagmentService;
-import com.dnd.soap.service.bean.PlayerInfoBean;
+import com.dnd.soap.service.entities.PlayerInfoBean;
 import com.dnd.soap.service.entities.heroes.PlayerInfo;
 import com.dnd.soap.service.entities.monsters.MonsterInfo;
 
 @Controller
 public class UserController {
 
-  @Autowired UserManagmentService userManagmentService;
+  private UserManagmentService userManagmentService;
+  private MarketService marketService;
+  private static final String PLAYER_INFO = "playerInfo";
+  private Random rand;
+
+  public UserController(UserManagmentService userManagmentService, MarketService marketService)
+      throws NoSuchAlgorithmException {
+    this.userManagmentService = userManagmentService;
+    this.marketService = marketService;
+    rand = SecureRandom.getInstanceStrong();
+  }
 
   @ModelAttribute("playerInfo")
   public PlayerInfo getPlayerInfo() {
@@ -33,7 +42,7 @@ public class UserController {
     return new MonsterInfo();
   }
 
-  @RequestMapping("/")
+  @GetMapping("/")
   public String homePage(Model springModel) {
     return "homePage";
   }
@@ -43,18 +52,26 @@ public class UserController {
       Model theModel,
       @ModelAttribute("playerInfoBean") PlayerInfoBean playerBean,
       @Valid PlayerInfoBean playerInfo,
-      BindingResult br)
-      throws ServletException, IOException {
+      BindingResult br) {
 
     if (br.hasErrors()) {
       return "registerPage";
     }
+    marketService.addItem();
 
     PlayerInfo player = userManagmentService.transformToPlayerInfo(playerBean);
     PlayerInfo newPlayer = userManagmentService.createUser(player);
-    theModel.addAttribute("playerInfo", newPlayer);
+    theModel.addAttribute(PLAYER_INFO, newPlayer);
 
     return "redirect:/userInfo/" + newPlayer.getId();
+  }
+
+  @GetMapping("/userInfo/{playerId}/market")
+  public String marketItems(Model model) {
+
+    model.addAttribute("marketItems", marketService.getItems());
+
+    return "marketPage";
   }
 
   @GetMapping("/registerPage")
@@ -72,26 +89,23 @@ public class UserController {
 
   @GetMapping("/userInfo/{playerId}")
   public String userPanel(Model theModel, @PathVariable long playerId) {
-    theModel.addAttribute("playerInfo", userManagmentService.getPlayer(playerId));
+    theModel.addAttribute(PLAYER_INFO, userManagmentService.getPlayer(playerId));
 
     return "characterPage";
   }
 
   @GetMapping("/deletePage/{userId}")
-  protected String deleteUser(@PathVariable long userId, Model model)
-      throws ServletException, IOException {
+  public String deleteUser(@PathVariable long userId, Model model) {
     userManagmentService.deleteUser(userId);
     model.addAttribute("playerInfoBean", new PlayerInfoBean());
     return "redirect:/registerPage";
   }
 
   @GetMapping("/fightPage/{user}")
-  public String fightMethod(Model model, @PathVariable long user)
-      throws ServletException, IOException {
-    Random rand = new Random();
+  public String fightMethod(Model model, @PathVariable long user) {
     int encounter = rand.nextInt(49) + 1;
 
-    model.addAttribute("playerInfo", userManagmentService.getPlayer(user));
+    model.addAttribute(PLAYER_INFO, userManagmentService.getPlayer(user));
     model.addAttribute("monster", userManagmentService.monsterEncounter(encounter));
 
     return "fightPage";
@@ -99,17 +113,17 @@ public class UserController {
 
   @GetMapping("/modifyPage/{userId}")
   public String goToModifyPage(Model model, @PathVariable long userId) {
-    model.addAttribute("playerInfo", userManagmentService.getPlayer(userId));
+    model.addAttribute(PLAYER_INFO, userManagmentService.getPlayer(userId));
 
     return "modifyPage";
   }
 
   @PostMapping("/modifyPage/{userId}")
   public String modifyName(
-      @PathVariable long userId, @ModelAttribute("playerInfo") PlayerInfo player, Model model) {
+      @PathVariable long userId, @ModelAttribute(PLAYER_INFO) PlayerInfo player, Model model) {
     player = userManagmentService.modifyName(userId, player.getUsername());
 
-    model.addAttribute("playerInfo", player);
+    model.addAttribute(PLAYER_INFO, player);
 
     return "characterPage";
   }

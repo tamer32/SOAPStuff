@@ -12,7 +12,7 @@ public interface MarketService {
   @WebMethod
   public void addItem();
 
-  @WebMethod
+  @WebMethod(action = "getItems")
   public LinkedList<Item> getItems();
 
   @WebMethod

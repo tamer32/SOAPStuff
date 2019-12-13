@@ -1,4 +1,4 @@
-package com.dnd.soap.service.bean;
+package com.dnd.soap.service.entities;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;

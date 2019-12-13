@@ -77,7 +77,7 @@
 
 	<script>
 		function battlePhase() {
-			let urlId = window.location.pathname.split('/')[3];
+			let urlId = window.location.pathname.split('/')[2];
 			$
 					.ajax({
 						type : "GET",
