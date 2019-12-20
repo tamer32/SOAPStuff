@@ -81,7 +81,7 @@
 			$
 					.ajax({
 						type : "GET",
-						url :  "${pageContext.request.contextPath}" + "/rollTheDice/" +urlId ,
+						url :  "${pageContext.request.contextPath}" + "/roll-the-dice/" +urlId ,
 						data: urlId,
 						dataType: "json",
 						success : function(response) {
@@ -128,7 +128,7 @@
 			$
 					.ajax({
 						type : "GET",
-						url : "${pageContext.request.contextPath}" + "/newEncounter",
+						url : "${pageContext.request.contextPath}" + "/new-encounter",
 						success : function(response) {
 							document.getElementById("monsterName").innerHTML = response.name;
 							document.getElementById("monsterStats0").innerHTML = response.stats.Strenght;

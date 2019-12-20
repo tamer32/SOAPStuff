@@ -22,20 +22,20 @@ import com.third.iter.service.entities.monsters.MonsterInfo;
 public class RestApi {
   @Autowired UserManagmentService userManagmentService;
 
-  @GetMapping(value = "/rollTheDice/{playerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/roll-the-dice/{playerId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Map<String, String>> rollingStones(@PathVariable Long playerId)
       throws IOException, ServletException {
     return ResponseEntity.ok(userManagmentService.battleCalculator(playerId));
   }
 
-  @GetMapping(value = "/newEncounter", produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/new-encounter", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<MonsterInfo> checkEncounter() {
     Random rand = new Random();
     int encounter = rand.nextInt(49) + 1;
     return ResponseEntity.ok(userManagmentService.monsterEncounter(encounter));
   }
 
-  @PostMapping(value = "/loginUser", produces = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(value = "/login-user", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<PlayerInfo> login(@RequestParam String username) {
 
     return userManagmentService.login(username);

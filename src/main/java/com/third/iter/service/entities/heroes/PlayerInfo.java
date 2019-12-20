@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-public class PlayerInfo {
+public class PlayerInfo implements Comparable<PlayerInfo> {
   private Long id;
 
   @NotBlank
@@ -88,5 +88,10 @@ public class PlayerInfo {
     playerAttributes.replace("Strenght", playerAttributes.get("Strenght") + bonusStrenght);
     playerAttributes.replace("Agility", playerAttributes.get("Strenght") + bonusAgility);
     playerAttributes.replace("Intelect", playerAttributes.get("Strenght") + bonusIntelect);
+  }
+
+  @Override
+  public int compareTo(PlayerInfo o) {
+    return o.getUsername().compareTo(username);
   }
 }

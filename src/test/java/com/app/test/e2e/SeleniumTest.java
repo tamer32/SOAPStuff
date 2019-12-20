@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class SeleniumTest {
+
   private static WebDriver driver;
   static JavascriptExecutor js;
 
@@ -24,7 +25,7 @@ public class SeleniumTest {
   @Test
   public void testCharacterCreationPage() {
     driver.navigate().to("http://localhost:8080/CRUDAppTheSecound/registerPage");
-    indexPageTest indexTest = new indexPageTest();
+    IndexPageTest indexTest = new IndexPageTest();
     PageFactory.initElements(driver, indexTest);
     indexTest.enterUsername("Username");
     indexTest.chooseClass();

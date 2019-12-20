@@ -3,7 +3,7 @@ package com.app.test.e2e;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class indexPageTest {
+public class IndexPageTest {
 
   @FindBy(id = "username")
   private WebElement pageUsername;
